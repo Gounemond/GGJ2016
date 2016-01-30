@@ -4,17 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
 	void Update()
 	{
-		var system = Rewired.ReInput.players.GetSystemPlayer();
-		if (system.GetButtonDown("Start Game") || (system.GetButton("Left Jump") && system.GetButton("Right Jump")))
+		foreach (var p in Rewired.ReInput.players.AllPlayers)
 		{
-			SceneManager.LoadScene(SRScenes.SpiderPhotoSession);
-		}
+			if (p.GetButtonDown("Start Game") || (p.GetButton("Left Jump") && p.GetButton("Right Jump")))
+			{
+				SceneManager.LoadScene(SRScenes.SpiderPhotoSession);
+			}
 
-		if (system.GetButtonDown("End Game"))
-		{
-			Application.Quit();
+			if (p.GetButtonDown("End Game"))
+			{
+				Application.Quit();
+			}
 		}
 	}
 }

@@ -18,17 +18,15 @@ public class GUIManager : MonoBehaviour
         }
     }
 
+    [Header ("Selezione della posa")]
     public Image smartphoneInitial;
-
-    public Image countdown3;
-    public Image countdown2;
-    public Image countdown1;
+    public RectTransform scrollViewContent;
+    public Image[] poseToBlink;
+    public Image[] poseSuggestorSpider1;
 
     void Awake()
     {
-        countdown3.enabled = false;
-        countdown2.enabled = false;
-        countdown1.enabled = false;
+
     }
 
 	// Use this for initialization
@@ -41,33 +39,69 @@ public class GUIManager : MonoBehaviour
 	
 	}
 
-    public IEnumerator SelectTheSexyPose()
+    public IEnumerator SelectTheSexyPose(int poseSelected = 3)
     {
         /*Easing.easeToPosition(smartphoneInitial.transform,
                                 smartphoneInitial.transform.position,
                                 new Vector3(smartphoneInitial.transform.position.x, 200, smartphoneInitial.transform.position.z),
                                 2, EasingType.InCubic);
           */
-        smartphoneInitial.transform.DOMoveY(260, 0.5f);
-        
+        smartphoneInitial.transform.DOMoveY(260, 1.5f);
+        yield return new WaitForSeconds(1.5f);
 
+        yield return new WaitForSeconds(1f);
+        Sequence mySequence = DOTween.Sequence();
 
+        switch (poseSelected)
+        {
+            case 0:
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                break;
+            case 1:
+                scrollViewContent.DOLocalMoveY(40, 1f);
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+
+                break;
+            case 2:
+                scrollViewContent.DOLocalMoveY(80, 1f);
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+
+                break;
+            case 3:
+                scrollViewContent.DOLocalMoveY(120, 1f);
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
+                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+                break;
+        }
+        yield return new WaitForSeconds(7);
+        smartphoneInitial.transform.DOMoveY(0, 1f);
+        yield return new WaitForSeconds(1f);
+
+        poseSuggestorSpider1[poseSelected].DOColor(Color.white,1);
         yield return null;
-    }
-
-    public IEnumerator StartCountDown()
-    {
-        countdown3.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        countdown3.enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        countdown2.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        countdown2.enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        countdown1.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        countdown1.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+         
     }
 }

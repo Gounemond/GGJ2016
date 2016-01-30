@@ -74,8 +74,10 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator TakeThePhoto()
     {
-        //GameElements.Self.ragnoManager.spider1.SetActive(false);
-        //GameElements.Self.ragnoManager.spider2.SetActive(false);
+        for (int i = 0; i < GameElements.Self.GUIManager.poseSuggestorSpider1.Length; i++)
+        {
+            GameElements.Self.GUIManager.poseSuggestorSpider1[i].color = Color.clear;
+        }
 
         // Lampeggio, audio e cose varie
         yield return new WaitForSeconds(0.2f);

@@ -32,9 +32,17 @@ public class GameElements : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        introGUI.GetComponent<CanvasGroup>().alpha = 0;
+        countDownGUI.GetComponent<CanvasGroup>().alpha = 0;
+    }
+
+    public GUIManager GUIManager;
+
     [Header("GUI Canvas")]
-    public UIFader pressToStart;                                            // UI Element with the button to start a round
-    public UIFader gameGUI;                                                 // UI Element with the grid
+    public UIFader introGUI;                                            // UI Element with the button to start a round
+    public UIFader countDownGUI;                                                 // UI Element with the grid
 
     [Header("Core Mechanic Objects")]
 

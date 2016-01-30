@@ -36,6 +36,15 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
+        yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose());
+        yield return new WaitForSeconds(20);
+        yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());
+        yield return StartCoroutine(GameElements.Self.countDownGUI.InteruptAndFadeIn());
+        yield return StartCoroutine(GameElements.Self.GUIManager.StartCountDown());
+        yield return StartCoroutine(GameElements.Self.countDownGUI.InteruptAndFadeOut());
+
+
         // Set up sfutt
         yield return null;
     }

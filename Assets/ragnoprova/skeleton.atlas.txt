@@ -1,0 +1,76 @@
+
+skeleton.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Livello1
+  rotate: true
+  xy: 1624, 232
+  size: 251, 259
+  orig: 253, 261
+  offset: 1, 1
+  index: -1
+images/Livello10
+  rotate: false
+  xy: 2, 2
+  size: 447, 481
+  orig: 449, 483
+  offset: 1, 1
+  index: -1
+images/Livello2
+  rotate: true
+  xy: 864, 52
+  size: 158, 207
+  orig: 160, 209
+  offset: 1, 1
+  index: -1
+images/Livello3
+  rotate: true
+  xy: 451, 51
+  size: 164, 411
+  orig: 166, 413
+  offset: 1, 1
+  index: -1
+images/Livello4
+  rotate: false
+  xy: 1885, 213
+  size: 122, 270
+  orig: 124, 272
+  offset: 1, 1
+  index: -1
+images/Livello5
+  rotate: true
+  xy: 451, 217
+  size: 159, 477
+  orig: 161, 479
+  offset: 1, 1
+  index: -1
+images/Livello6
+  rotate: true
+  xy: 1008, 332
+  size: 151, 312
+  orig: 153, 314
+  offset: 1, 1
+  index: -1
+images/Livello7
+  rotate: true
+  xy: 1322, 310
+  size: 173, 300
+  orig: 175, 302
+  offset: 1, 1
+  index: -1
+images/Livello8
+  rotate: true
+  xy: 930, 212
+  size: 118, 302
+  orig: 120, 304
+  offset: 1, 1
+  index: -1
+images/Livello9
+  rotate: true
+  xy: 451, 378
+  size: 105, 555
+  orig: 107, 557
+  offset: 1, 1
+  index: -1

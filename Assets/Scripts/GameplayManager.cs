@@ -36,19 +36,15 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
-        //TutorialOverlays
-
+        //TutorialOverlays: Wait for user input
+        yield return StartCoroutine(GameElements.Self.instructionSpider1.InteruptAndFadeOut());
+        yield return StartCoroutine(GameElements.Self.instructionSpider2.InteruptAndFadeOut());
 
         //SelectingThePose
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose());
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());
 
-        //Fade The Pose Element
-        //Select the correct pose 
-
-
-        // Set up sfutt
         yield return null;
     }
 
@@ -72,7 +68,9 @@ public class GameplayManager : MonoBehaviour
     private IEnumerator PlayRound(int phaseNumber)
     {
         // Enable spider
-        yield return new WaitForSeconds(turnDuration);
+        yield return new WaitForSeconds(6);
+
+        yield return StartCoroutine(TakeThePhoto());
     }
 
     public IEnumerator TakeThePhoto()

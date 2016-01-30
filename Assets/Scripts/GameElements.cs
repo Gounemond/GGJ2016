@@ -47,6 +47,8 @@ public class GameElements : MonoBehaviour
     public UIFader instructionSpider2;
 
     [Header("Core Mechanic Objects")]
+    public DetectInputToStart inputToStartGame;
+    public RagnoManager ragnoManager;
 
     [Header("Audio effects")]
     public AudioSource correctAnswer;

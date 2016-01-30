@@ -19,6 +19,9 @@ public class GameplayManager : MonoBehaviour
 
     public int turnDuration = 5;
 
+    private bool player1Ready = false;
+    private bool player2Ready = false;
+
     // Waiting bool
     private bool m_WaitClick = false;
 
@@ -37,13 +40,10 @@ public class GameplayManager : MonoBehaviour
     private IEnumerator StartPhase()
     {
         //TutorialOverlays: Wait for user input
-        yield return StartCoroutine(GameElements.Self.instructionSpider1.InteruptAndFadeOut());
-        yield return StartCoroutine(GameElements.Self.instructionSpider2.InteruptAndFadeOut());
+        yield return StartCoroutine(WaitBothPlayersReady());
 
         //SelectingThePose
-        yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
-        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose());
-        yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(3));
 
         yield return null;
     }
@@ -56,13 +56,12 @@ public class GameplayManager : MonoBehaviour
         // Go through the rounds of the game
         yield return StartCoroutine(PlayRound(1));
         yield return StartCoroutine(TakeThePhoto());
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(4));
         yield return StartCoroutine(PlayRound(2));
         yield return StartCoroutine(TakeThePhoto());
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
         yield return StartCoroutine(PlayRound(3));
         yield return StartCoroutine(TakeThePhoto());
-        yield return StartCoroutine(PlayRound(4));
-        yield return StartCoroutine(TakeThePhoto());
-        yield return StartCoroutine(PlayRound(5));
     }
 
     private IEnumerator PlayRound(int phaseNumber)
@@ -75,13 +74,14 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator TakeThePhoto()
     {
+        //GameElements.Self.ragnoManager.spider1.SetActive(false);
+        //GameElements.Self.ragnoManager.spider2.SetActive(false);
 
+        // Lampeggio, audio e cose varie
+        yield return new WaitForSeconds(0.2f);
+        // Screenshot By Tato
 
-        // User need to press the button to proceed
-        m_WaitClick = true;
-        yield return StartCoroutine(waitSomethingClicked());                                      // Wait the user input to proceed
-
-
+        //GameElements.Self.ragnoManager.ResetSpiderPositions();
     }
 
     private IEnumerator EndPhase()
@@ -99,18 +99,43 @@ public class GameplayManager : MonoBehaviour
         m_playing = false;
     }
 
-
-    // Various Methods
-    public IEnumerator waitSomethingClicked()
-    {
-        while (m_WaitClick)
-        {
-            yield return null;
-        }
-    }
-
     public void startPhase()
     {
         m_WaitClick = false;
     }
+
+    public IEnumerator WaitBothPlayersReady()
+    {
+        GameElements.Self.inputToStartGame.enabled = true;
+        GameElements.Self.inputToStartGame.player1Ready += SetPlayer1Ready;
+        GameElements.Self.inputToStartGame.player2Ready += SetPlayer2Ready;
+
+        while (!player1Ready || !player2Ready)
+        {
+            yield return null;
+        }
+
+        GameElements.Self.inputToStartGame.player1Ready -= SetPlayer1Ready;
+        GameElements.Self.inputToStartGame.player2Ready -= SetPlayer2Ready;
+        GameElements.Self.inputToStartGame.enabled = false;
+    }
+
+    public void SetPlayer1Ready()
+    {
+        if (!player1Ready)
+        {
+            StartCoroutine(GameElements.Self.instructionSpider1.FadeOut());
+        }
+        player1Ready = true;
+    }
+
+    public void SetPlayer2Ready()
+    {
+        if (!player2Ready)
+        {
+            StartCoroutine(GameElements.Self.instructionSpider2.FadeOut());
+        }
+        player2Ready = true;
+    }
+
 }

@@ -4,7 +4,7 @@ using UnityEditor;
 public class PathToolbox: EditorWindow 
 {
 
-    [MenuItem ("StudioEvil/Easing/Path Toolbox")]
+    [MenuItem ("AracnoTeam/Easing/Path Toolbox")]
     static void Init () 
 	{
 		PathToolbox win = EditorWindow.GetWindow<PathToolbox>();

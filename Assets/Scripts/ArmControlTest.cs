@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class ArmControlTest : MonoBehaviour
 {
+	public SpiderMain SpiderRef;
 	public Rigidbody2D LeftHandBody;
 	public float DefaultDistance;
 	public Vector2 ArmStartingPoint;
@@ -50,7 +51,7 @@ public class ArmControlTest : MonoBehaviour
 
 	void Update()
 	{
-		var player = Rewired.ReInput.players.GetPlayer(0);
+		var player = SpiderRef.RwPlayer;
 		var leftArmControl = player.GetAxis2D(side+" Arm X", side+" Arm Y");
 		leftArmControl = Vector2.ClampMagnitude(leftArmControl, 1f);
 		leftArmControl = transform.InverseTransformDirection(leftArmControl);

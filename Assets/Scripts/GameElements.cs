@@ -46,6 +46,7 @@ public class GameElements : MonoBehaviour
     public UIFader instructionSpider1;
     public UIFader instructionSpider2;
     public UIFader flash;
+	public GameObject countdownCanvas;
 
     [Header("Core Mechanic Objects")]
     public DetectInputToStart inputToStartGame;

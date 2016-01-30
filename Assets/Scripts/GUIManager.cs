@@ -6,7 +6,7 @@ using System.Collections;
 
 public class GUIManager : MonoBehaviour
 { 
-    // Singleton implementation
+	// Singleton implementation
     protected static GUIManager _self;
     public static GUIManager Self
     {
@@ -23,21 +23,6 @@ public class GUIManager : MonoBehaviour
     public RectTransform scrollViewContent;
     public Image[] poseToBlink;
     public Image[] poseSuggestorSpider1;
-
-    void Awake()
-    {
-
-    }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public IEnumerator SelectTheSexyPose(int poseSelected = 3)
     {
@@ -72,7 +57,7 @@ public class GUIManager : MonoBehaviour
 		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.green, 0.5f));
 		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
 		yield return mySequence2.WaitForCompletion();
-
+		     
 		yield return smartphoneInitial.transform.DOMoveY(0, 1f).WaitForCompletion();
 
 		yield return poseSuggestorSpider1[poseSelected].DOColor(Color.white,1).WaitForCompletion();

@@ -17,6 +17,8 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    public int turnDuration = 5;
+
     // Waiting bool
     private bool m_WaitClick = false;
 
@@ -34,16 +36,8 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
-        // Get testData for the current playingGame
-
-        // Setting bonus and score to 0;
-        m_score = 0;
-        m_bonus = 1000;
-
-
-        // Show welcome message
-
-        yield return StartCoroutine(WaitToStartNextRound());
+        // Set up sfutt
+        yield return null;
     }
 
     private IEnumerator PlayPhase()
@@ -53,22 +47,32 @@ public class GameplayManager : MonoBehaviour
 
         // Go through the rounds of the game
         yield return StartCoroutine(PlayRound(1));
-        yield return StartCoroutine(WaitToStartNextRound());
+        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(PlayRound(2));
-        yield return StartCoroutine(WaitToStartNextRound());
+        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(PlayRound(3));
-        yield return StartCoroutine(WaitToStartNextRound());
+        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(PlayRound(4));
-        yield return StartCoroutine(WaitToStartNextRound());
+        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(PlayRound(5));
     }
 
     private IEnumerator PlayRound(int phaseNumber)
     {
-        yield return null;
+        // Enable spider
+        yield return new WaitForSeconds(turnDuration);
     }
 
-    
+    public IEnumerator TakeThePhoto()
+    {
+
+
+        // User need to press the button to proceed
+        m_WaitClick = true;
+        yield return StartCoroutine(waitSomethingClicked());                                      // Wait the user input to proceed
+
+
+    }
 
     private IEnumerator EndPhase()
     {
@@ -77,16 +81,7 @@ public class GameplayManager : MonoBehaviour
         SceneManager.LoadScene(13);
     }
 
-    public IEnumerator WaitToStartNextRound()
-    {
-      
-
-        // User need to press the button to proceed
-        m_WaitClick = true;
-        yield return StartCoroutine(waitSomethingClicked());                                      // Wait the user input to proceed
-
-
-    }
+    
 
     private void HandleGameComplete()
     {

@@ -79,8 +79,12 @@ public class GameplayManager : MonoBehaviour
             GameElements.Self.GUIManager.poseSuggestorSpider1[i].color = Color.clear;
         }
 
+        yield return StartCoroutine(GameElements.Self.flash.FadeIn());
+
         // Lampeggio, audio e cose varie
-        yield return new WaitForSeconds(0.2f);
+
+        yield return StartCoroutine(GameElements.Self.flash.FadeOut());
+
         // Screenshot By Tato
 
         //GameElements.Self.ragnoManager.ResetSpiderPositions();

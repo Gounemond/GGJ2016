@@ -45,6 +45,7 @@ public class GameElements : MonoBehaviour
     public UIFader introGUI;                                            
     public UIFader instructionSpider1;
     public UIFader instructionSpider2;
+    public UIFader flash;
 
     [Header("Core Mechanic Objects")]
     public DetectInputToStart inputToStartGame;

@@ -43,71 +43,39 @@ public class GUIManager : MonoBehaviour
     {
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
 
-        smartphoneInitial.transform.DOLocalMoveY(160, 1.5f);
-        yield return new WaitForSeconds(1.5f);
+		yield return smartphoneInitial.transform.DOLocalMoveY(160, 1.5f).WaitForCompletion();
 
         yield return new WaitForSeconds(1f);
-        Sequence mySequence = DOTween.Sequence();
-
-        switch (poseSelected)
+		switch (poseSelected)
         {
             case 0:
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
                 break;
             case 1:
-                scrollViewContent.DOLocalMoveY(40, 1f);
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-
+				yield return scrollViewContent.DOLocalMoveY(40, 1f).WaitForCompletion();
                 break;
             case 2:
-                scrollViewContent.DOLocalMoveY(80, 1f);
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-
+				yield return scrollViewContent.DOLocalMoveY(80, 1f).WaitForCompletion();
                 break;
             case 3:
-                scrollViewContent.DOLocalMoveY(120, 1f);
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                break;
+				yield return scrollViewContent.DOLocalMoveY(120, 1f).WaitForCompletion();
+				break;
             case 4:
-                scrollViewContent.DOLocalMoveY(160, 1f);
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 1f));
-                mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
-                break;
+				yield return scrollViewContent.DOLocalMoveY(160, 1f).WaitForCompletion();
+				break;
         }
-        yield return new WaitForSeconds(7);
-        smartphoneInitial.transform.DOMoveY(0, 1f);
-        yield return new WaitForSeconds(1f);
+		Sequence mySequence = DOTween.Sequence();
+		mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 0.5f));
+		mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+		yield return mySequence.WaitForCompletion();
 
-        poseSuggestorSpider1[poseSelected].DOColor(Color.white,1);
+		Sequence mySequence2 = DOTween.Sequence();
+		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.green, 0.5f));
+		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
+		yield return mySequence2.WaitForCompletion();
+
+		yield return smartphoneInitial.transform.DOMoveY(0, 1f).WaitForCompletion();
+
+		yield return poseSuggestorSpider1[poseSelected].DOColor(Color.white,1).WaitForCompletion();
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());         
     }
 }

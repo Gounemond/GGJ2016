@@ -55,20 +55,21 @@ public class GameplayManager : MonoBehaviour
 
         // Go through the rounds of the game
         yield return StartCoroutine(PlayRound(1));
-        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(4));
         yield return StartCoroutine(PlayRound(2));
-        yield return StartCoroutine(TakeThePhoto());
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
         yield return StartCoroutine(PlayRound(3));
-        yield return StartCoroutine(TakeThePhoto());
     }
 
-    private IEnumerator PlayRound(int phaseNumber)
-    {
-        // Enable spider
-        yield return new WaitForSeconds(6);
-
+	private IEnumerator PlayRound(int phaseNumber)
+	{
+		var cd = GameElements.Self.countdownCanvas.GetComponentInChildren<CountdownAnimation>();
+	    for (int i = 6; i > 0; i--)
+	    {
+			cd.CountdownUpdate(i);
+			yield return new WaitForSeconds(1);
+	    }
+		cd.CountdownStop();
         yield return StartCoroutine(TakeThePhoto());
     }
 
@@ -82,10 +83,11 @@ public class GameplayManager : MonoBehaviour
         yield return StartCoroutine(GameElements.Self.flash.FadeIn());
 
         // Lampeggio, audio e cose varie
+		FindObjectOfType<RagnoManager>().FreezeSpiders();
 
         yield return StartCoroutine(GameElements.Self.flash.FadeOut());
 
-        // Screenshot By Tato
+		// Screenshot By Tato
 
         //GameElements.Self.ragnoManager.ResetSpiderPositions();
     }

@@ -8,6 +8,7 @@ public enum Side
 
 public class LeftJumper : MonoBehaviour
 {
+	public SpiderMain SpiderRef;
 	public Vector2 JumpAmount;
 	public float MaxJumpTime;
 	private float timer;
@@ -24,7 +25,7 @@ public class LeftJumper : MonoBehaviour
 		var rayLength = GetComponent<CircleCollider2D>().radius * transform.lossyScale.y + 0.01f;
 		if (jumpStarted || Physics2D.Raycast(transform.position, Vector2.down, rayLength, 1 << 8).collider != null)
 		{
-			var player = Rewired.ReInput.players.GetPlayer(0);
+			var player = SpiderRef.RwPlayer;
 			if (player.GetAxis(Side + " Jump") > 0.2f)
 			{
 				if (!jumpStarted)

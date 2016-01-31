@@ -87,9 +87,10 @@ public class GameplayManager : MonoBehaviour
 
         yield return StartCoroutine(GameElements.Self.flash.FadeOut());
 
-		// Screenshot By Tato
+        // Screenshot By Tato
 
-        //GameElements.Self.ragnoManager.ResetSpiderPositions();
+        // Lampeggio, audio e cose varie
+        FindObjectOfType<RagnoManager>().UnfreezeSpiders();
     }
 
     private IEnumerator EndPhase()

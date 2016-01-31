@@ -26,6 +26,7 @@ public class GUIManager : MonoBehaviour
 
     public Image spiderWinning;
     public Image spiderLosing;
+    public Sprite spiderWebOnScreen;
 
     public IEnumerator SelectTheSexyPose(int poseSelected = 3)
     {
@@ -52,12 +53,12 @@ public class GUIManager : MonoBehaviour
 				break;
         }
 		Sequence mySequence = DOTween.Sequence();
-		mySequence.Append(poseToBlink[poseSelected].DOColor(Color.green, 0.5f));
+		mySequence.Append(poseToBlink[poseSelected].DOColor(new Color(1,0.78f,0.76f), 0.5f));
 		mySequence.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
 		yield return mySequence.WaitForCompletion();
 
 		Sequence mySequence2 = DOTween.Sequence();
-		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.green, 0.5f));
+		mySequence2.Append(poseToBlink[poseSelected].DOColor(new Color(1, 0.78f, 0.76f), 0.5f));
 		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
 		yield return mySequence2.WaitForCompletion();
 		     
@@ -78,6 +79,10 @@ public class GUIManager : MonoBehaviour
         }
         spiderWinning.transform.DOLocalMoveY(0, 2);
         yield return spiderLosing.transform.DOLocalMoveY(0, 2).WaitForCompletion();
+
+        yield return new WaitForSeconds(2);
+        spiderLosing.sprite = spiderWebOnScreen;
+        yield return new WaitForSeconds(2); 
 
     }
 }

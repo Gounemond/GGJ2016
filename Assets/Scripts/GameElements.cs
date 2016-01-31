@@ -46,11 +46,13 @@ public class GameElements : MonoBehaviour
     public UIFader instructionSpider1;
     public UIFader instructionSpider2;
     public UIFader flash;
+    public UIFader tinderScoring;
 	public GameObject countdownCanvas;
 
     [Header("Core Mechanic Objects")]
     public DetectInputToStart inputToStartGame;
     public RagnoManager ragnoManager;
+    public TinderSwipesManager tinderSwipeManager;
 
     [Header("Audio effects")]
     public AudioSource correctAnswer;

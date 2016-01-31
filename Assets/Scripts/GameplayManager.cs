@@ -89,6 +89,8 @@ public class GameplayManager : MonoBehaviour
 
         // Screenshot By Tato
 
+        yield return StartCoroutine(GameElements.Self.tinderSwipeManager.TimeToPickUpChicks(7, 4));
+
         // Lampeggio, audio e cose varie
         FindObjectOfType<RagnoManager>().UnfreezeSpiders();
     }

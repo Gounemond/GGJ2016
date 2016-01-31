@@ -1,0 +1,47 @@
+
+background.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+foglia
+  rotate: false
+  xy: 1647, 1058
+  size: 263, 460
+  orig: 265, 462
+  offset: 1, 1
+  index: -1
+tronco
+  rotate: false
+  xy: 2, 2
+  size: 1640, 752
+  orig: 1642, 754
+  offset: 1, 1
+  index: -1
+tronco-linee
+  rotate: false
+  xy: 2, 756
+  size: 1643, 762
+  orig: 1645, 764
+  offset: 1, 1
+  index: -1
+
+background2.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ramo
+  rotate: false
+  xy: 596, 12
+  size: 581, 527
+  orig: 583, 529
+  offset: 1, 1
+  index: -1
+ramo-linee
+  rotate: false
+  xy: 2, 2
+  size: 592, 537
+  orig: 594, 539
+  offset: 1, 1
+  index: -1

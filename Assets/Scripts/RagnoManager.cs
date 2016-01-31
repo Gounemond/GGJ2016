@@ -16,7 +16,7 @@ public class RagnoManager : MonoBehaviour
         m_spider1Position = spider1.transform.position;
         m_spider2Position = spider2.transform.position;
 		spider1.GetComponent<SpiderMain>().playerID = 0;
-		spider1.GetComponent<SpiderMain>().playerID = 1;
+		spider2.GetComponent<SpiderMain>().playerID = 1;
 	}
 	
 	// Update is called once per frame
@@ -56,7 +56,7 @@ public class RagnoManager : MonoBehaviour
         spider1 = Instantiate(SRResources.Spider.Load());
         spider2 = Instantiate(SRResources.Spider.Load());
 		spider1.GetComponent<SpiderMain>().playerID = 0;
-		spider1.GetComponent<SpiderMain>().playerID = 1;
+		spider2.GetComponent<SpiderMain>().playerID = 1;
 		spider1.transform.position = m_spider1Position;
         spider2.transform.position = m_spider2Position;
     }

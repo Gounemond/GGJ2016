@@ -23,7 +23,7 @@ public class LeftJumper : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		var rayLength = GetComponent<CircleCollider2D>().radius * transform.lossyScale.y + 0.01f;
+		var rayLength = GetComponent<CircleCollider2D>().radius * transform.lossyScale.y + 0.1f;
 		if (jumpStarted || Physics2D.Raycast(transform.position, Vector2.down, rayLength, 1 << 8).collider != null)
 		{
 			var player = SpiderRef.RwPlayer;

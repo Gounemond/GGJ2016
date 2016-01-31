@@ -46,7 +46,7 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
-
+	    GetComponent<AudioSource>().DOFade(1, 0.7f);
 		//TutorialOverlays: Wait for user input
 		yield return StartCoroutine(WaitBothPlayersReady());
 
@@ -155,7 +155,7 @@ public class GameplayManager : MonoBehaviour
 
 	    GetComponent<AudioSource>().DOFade(0,1);
 
-	    yield return (GameElements.Self.flash.FadeIn());
+	    yield return (GameElements.Self.flash.GetComponentInChildren<CanvasGroup>().DOFade(0, 1).WaitForCompletion());
 
         SceneManager.LoadScene(SRScenes.mainmenu);
     }

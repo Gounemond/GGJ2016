@@ -52,6 +52,12 @@ public class GUIManager : MonoBehaviour
             case 4:
 				yield return scrollViewContent.DOLocalMoveY(160, 1f).WaitForCompletion();
 				break;
+            case 5:
+                yield return scrollViewContent.DOLocalMoveY(200, 1f).WaitForCompletion();
+                break;
+            case 6:
+                yield return scrollViewContent.DOLocalMoveY(240, 1f).WaitForCompletion();
+                break;
         }
 		Sequence mySequence = DOTween.Sequence();
 		mySequence.Append(poseToBlink[poseSelected].DOColor(new Color(1,0.78f,0.76f), 0.5f));

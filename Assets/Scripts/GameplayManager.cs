@@ -51,7 +51,7 @@ public class GameplayManager : MonoBehaviour
 		yield return StartCoroutine(WaitBothPlayersReady());
 
         //SelectingThePose
-        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(0));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(6));
 
         yield return null;
     }
@@ -69,6 +69,12 @@ public class GameplayManager : MonoBehaviour
         yield return StartCoroutine(PlayRound(2));
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(3));
         yield return StartCoroutine(PlayRound(3));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(4));
+        yield return StartCoroutine(PlayRound(4));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(5));
+        yield return StartCoroutine(PlayRound(5));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(6));
+        yield return StartCoroutine(PlayRound(6));
     }
 
 	private IEnumerator PlayRound(int poseNumber)

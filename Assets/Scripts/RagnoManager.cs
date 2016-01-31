@@ -43,7 +43,6 @@ public class RagnoManager : MonoBehaviour
 	{
 		spider1.GetComponent<Animator>().speed = 1;
 		spider2.GetComponent<Animator>().speed = 1;
-
 		foreach (var b in spider1.GetComponentsInChildren<Rigidbody2D>())
 		{
 			b.simulated = true;

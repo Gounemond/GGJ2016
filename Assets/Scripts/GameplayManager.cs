@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using DG.Tweening;
 using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
@@ -151,6 +152,8 @@ public class GameplayManager : MonoBehaviour
 
 	    var img = GameElements.Self.flash.GetComponentInChildren<Image>();
 	    img.color = Color.black;
+
+	    GetComponent<AudioSource>().DOFade(0,1);
 
 	    yield return (GameElements.Self.flash.FadeIn());
 

@@ -7,15 +7,15 @@ public class CodaControl : MonoBehaviour
 {
 
 	private System.Random random;
-
+	private SpiderMain spider;
 	void Start()
 	{
 		random = new System.Random();
+		spider = GetComponent<SpiderMain>();
 	}
 
 	void Update ()
 	{
-		var spider = GetComponent<SpiderMain>();
 		if (spider.RwPlayer.GetButtonDown("CodaControl"))
 		{
 			var anim = GetComponent<Animator>();

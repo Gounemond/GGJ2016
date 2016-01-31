@@ -16,14 +16,16 @@ public class LeftJumper : MonoBehaviour
 	public Side Side;
 	private Rigidbody2D rig;
 	private bool jumpStarted;
+	private CircleCollider2D circ;
 	void Start()
 	{
 		rig = GetComponent<Rigidbody2D>();
+		circ = GetComponent<CircleCollider2D>();
 	}
 
 	void FixedUpdate ()
 	{
-		var rayLength = GetComponent<CircleCollider2D>().radius * transform.lossyScale.y + 0.1f;
+		var rayLength = circ.radius * transform.lossyScale.y + 0.1f;
 		if (jumpStarted || Physics2D.Raycast(transform.position, Vector2.down, rayLength, 1 << 8).collider != null)
 		{
 			var player = SpiderRef.RwPlayer;

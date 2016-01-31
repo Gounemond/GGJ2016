@@ -83,8 +83,9 @@ public class GUIManager : MonoBehaviour
 
         if (!hasPlayer1Won)
         {
-            spiderWinning.transform.localPosition = new Vector3(spiderWinning.transform.localPosition.x, 400, spiderWinning.transform.localPosition.z);
-            spiderLosing.transform.localPosition = new Vector3(spiderLosing.transform.localPosition.x, -400, spiderLosing.transform.localPosition.z);
+            Debug.Log("Il secondo ha vinto");
+            spiderWinning.transform.localPosition = new Vector3(400, spiderWinning.transform.localPosition.y, spiderWinning.transform.localPosition.z);
+            spiderLosing.transform.localPosition = new Vector3(-400, spiderLosing.transform.localPosition.y, spiderLosing.transform.localPosition.z);
         }
         spiderWinning.transform.DOLocalMoveY(0, 2);
         yield return spiderLosing.transform.DOLocalMoveY(0, 2).WaitForCompletion();

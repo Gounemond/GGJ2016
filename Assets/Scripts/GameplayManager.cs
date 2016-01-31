@@ -144,6 +144,8 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator EndPhase()
     {
+        Debug.Log("Total spider1 Likes: " + m_totalLikesSpider1);
+        Debug.Log("Total spider2 Likes: " + m_totalLikesSpider2);
         yield return new WaitForSeconds(2);
         AudioManager.Self.FinishedGame();
 

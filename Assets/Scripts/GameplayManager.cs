@@ -194,6 +194,7 @@ public class GameplayManager : MonoBehaviour
         if (!player1Ready)
         {
             StartCoroutine(GameElements.Self.instructionSpider1.FadeOut());
+            AudioManager.Self.PlayerReady();
         }
         player1Ready = true;
     }
@@ -203,6 +204,7 @@ public class GameplayManager : MonoBehaviour
         if (!player2Ready)
         {
             StartCoroutine(GameElements.Self.instructionSpider2.FadeOut());
+            AudioManager.Self.PlayerReady();
         }
         player2Ready = true;
     }

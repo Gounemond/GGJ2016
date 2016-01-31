@@ -32,6 +32,7 @@ public class GUIManager : MonoBehaviour
     {
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
 
+        AudioManager.Self.SmartPhoneAppears();
 		yield return smartphoneInitial.transform.DOLocalMoveY(200, 1.5f).WaitForCompletion();
 
         yield return new WaitForSeconds(1f);
@@ -62,9 +63,11 @@ public class GUIManager : MonoBehaviour
 		mySequence2.Append(poseToBlink[poseSelected].DOColor(Color.white, 0.5f));
 		yield return mySequence2.WaitForCompletion();
 		     
+        AudioManager.Self.SmartPhoneAppears();
 		yield return smartphoneInitial.transform.DOMoveY(0, 1f).WaitForCompletion();
 
-		yield return poseSuggestorSpider1[poseSelected].DOColor(Color.white,1).WaitForCompletion();
+        AudioManager.Self.PoseSelected();
+        yield return poseSuggestorSpider1[poseSelected].DOColor(Color.white,1).WaitForCompletion();
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());         
     }
 

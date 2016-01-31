@@ -65,7 +65,7 @@ public class ArmControlTest : MonoBehaviour
 		}
 
         joint.enabled = leftArmControl.magnitude > 0.2f;
-        joint.connectedAnchor = ArmStartingPoint + leftArmControl * DefaultDistance;
+        joint.connectedAnchor = (Vector2) ArmStartingPoint + leftArmControl * DefaultDistance;
 		if (joint.enabled)
 		{
 			Debug.DrawLine(transform.TransformPoint(ArmStartingPoint), transform.TransformPoint(joint.connectedAnchor));

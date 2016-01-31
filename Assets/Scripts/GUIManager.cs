@@ -79,14 +79,18 @@ public class GUIManager : MonoBehaviour
 
     public IEnumerator WinningScreenTime(bool hasPlayer1Won)
     {
-        yield return StartCoroutine(GameElements.Self.finalEndScreen.InteruptAndFadeIn());
 
         if (!hasPlayer1Won)
         {
             Debug.Log("Il secondo ha vinto");
-            spiderWinning.transform.localPosition = new Vector3(400, spiderWinning.transform.localPosition.y, spiderWinning.transform.localPosition.z);
-            spiderLosing.transform.localPosition = new Vector3(-400, spiderLosing.transform.localPosition.y, spiderLosing.transform.localPosition.z);
+            yield return spiderWinning.transform.DOLocalMoveX(0, 0.1f).WaitForCompletion();
+            yield return spiderLosing.transform.DOLocalMoveX(0, 0.1f).WaitForCompletion();
+            //spiderWinning.transform.position = new Vector3(400, spiderWinning.transform.position.y, spiderWinning.transform.position.z);
+            //spiderLosing.transform.position = new Vector3(-400, spiderLosing.transform.position.y, spiderLosing.transform.position.z);
         }
+
+        yield return StartCoroutine(GameElements.Self.finalEndScreen.InteruptAndFadeIn());
+
         spiderWinning.transform.DOLocalMoveY(0, 2);
         yield return spiderLosing.transform.DOLocalMoveY(0, 2).WaitForCompletion();
 

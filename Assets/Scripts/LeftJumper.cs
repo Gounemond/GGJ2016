@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public enum Side
@@ -30,6 +31,8 @@ public class LeftJumper : MonoBehaviour
 			{
 				if (!jumpStarted)
 				{
+					var anim = SpiderRef.GetComponent<Animator>();
+					anim.Play("Salto"+Side, anim.GetLayerIndex("Gambe"+Side), 0f);
 					jumpStarted = true;
 					timer = 0;
 				}

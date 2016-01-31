@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,11 @@ public class TinderSwipesManager : MonoBehaviour
 {
     public Animator[] TinderSpider1;
     public Animator[] TinderSpider2;
+
+    public Image likeSpider1;
+    public Image nopeSpider1;
+    public Image likeSpider2;
+    public Image nopeSpider2;
 
     private List<int> m_spider1Likes;
     private List<int> m_spider2Likes;
@@ -33,25 +39,36 @@ public class TinderSwipesManager : MonoBehaviour
         {
             if (m_spider1Likes[m_spider1Likes.Count - 1] == 1)
             {
+                likeSpider1.enabled = true;
                 TinderSpider1[i].Play("TinderSwipeRight");
             }
             else
             {
+                nopeSpider1.enabled = true;
                 TinderSpider1[i].Play("TinderSwipeLeft");
             }
             m_spider1Likes.RemoveAt(m_spider1Likes.Count - 1);
 
             if (m_spider2Likes[m_spider2Likes.Count - 1] == 1)
             {
+                likeSpider2.enabled = true;
                 TinderSpider2[i].Play("TinderSwipeRight");
             }
             else
             {
+                nopeSpider2.enabled = true;
                 TinderSpider2[i].Play("TinderSwipeLeft");
             }
             m_spider2Likes.RemoveAt(m_spider2Likes.Count - 1);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
+
+            likeSpider1.enabled = false;
+            nopeSpider1.enabled = false;
+            likeSpider2.enabled = false;
+            nopeSpider2.enabled = false;
+
+            yield return new WaitForSeconds(0.1f);
         }
         yield return null;
         yield return StartCoroutine(GameElements.Self.tinderScoring.InteruptAndFadeOut());

@@ -53,6 +53,7 @@ public class GameElements : MonoBehaviour
     public DetectInputToStart inputToStartGame;
     public RagnoManager ragnoManager;
     public TinderSwipesManager tinderSwipeManager;
+    public TakeAScreenshot screenshotCamera;
 
     [Header("Audio effects")]
     public AudioSource correctAnswer;

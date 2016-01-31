@@ -27,6 +27,8 @@ public class RagnoManager : MonoBehaviour
 
 	public void FreezeSpiders()
 	{
+		spider1.GetComponent<Animator>().speed = 0;
+		spider2.GetComponent<Animator>().speed = 0;
 		foreach (var b in spider1.GetComponentsInChildren<Rigidbody2D>())
 		{
 			b.simulated = false;
@@ -39,6 +41,8 @@ public class RagnoManager : MonoBehaviour
 
 	public void UnfreezeSpiders()
 	{
+		spider1.GetComponent<Animator>().speed = 1;
+		spider2.GetComponent<Animator>().speed = 1;
 		foreach (var b in spider1.GetComponentsInChildren<Rigidbody2D>())
 		{
 			b.simulated = true;

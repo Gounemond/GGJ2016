@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour {
 
     public AudioSource generalAudioSource;
     public AudioClip playerReady;
+    public AudioClip swhooshSmartPhone;
+    public AudioClip poseSelected;
 
     // Use this for initialization
     void Start () {
@@ -31,5 +33,16 @@ public class AudioManager : MonoBehaviour {
     public void PlayerReady()
     {
         generalAudioSource.PlayOneShot(playerReady);
+    }
+
+    public void SmartPhoneAppears()
+    {
+        generalAudioSource.PlayOneShot(swhooshSmartPhone);
+    }
+
+    public void PoseSelected()
+    {
+        generalAudioSource.PlayOneShot(poseSelected);
+
     }
 }

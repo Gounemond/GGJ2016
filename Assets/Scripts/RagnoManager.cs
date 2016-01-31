@@ -31,6 +31,7 @@ public class RagnoManager : MonoBehaviour
 		sa1.Skeleton.Skin = sa1.skeleton.data.Skins.Find( s => s.Name == skins[skin_no]);
 		sa2.Skeleton.Skin = sa2.skeleton.data.Skins.Find(s => s.Name == skins[(skin_no + 1) % 3]);
 		*/
+
 		spider1.transform.position = m_spider1Position;
 		spider2.transform.position = m_spider2Position;
 	}

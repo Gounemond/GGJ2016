@@ -51,7 +51,7 @@ public class GameplayManager : MonoBehaviour
 		yield return StartCoroutine(WaitBothPlayersReady());
 
         //SelectingThePose
-        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(6));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(0));
 
         yield return null;
     }

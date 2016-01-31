@@ -23,34 +23,28 @@ public class SpiderTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("SPIDER!");
-        if (other.tag == "Spider")
+        if (objectsInCollider == 0)
         {
-            if (objectsInCollider == 0)
+            GameplayManager.Self.EnteredInThePose(spiderNumber);
+            if (onCollisionEnter != null)
             {
-                GameplayManager.Self.EnteredInThePose(spiderNumber);
-                if (onCollisionEnter != null)
-                {
-                    onCollisionEnter();
-                }
+                onCollisionEnter();
             }
-            objectsInCollider++;
         }
+        objectsInCollider++;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Spider")
+
+        if (objectsInCollider == 1)
         {
-            if (objectsInCollider == 1)
+            GameplayManager.Self.ExitedFromThePose(spiderNumber);
+            if (onCollisionExit != null)
             {
-                GameplayManager.Self.ExitedFromThePose(spiderNumber);
-                if (onCollisionExit != null)
-                {
-                    onCollisionExit();
-                }
-                objectsInCollider--;
+                onCollisionExit();
             }
+            objectsInCollider--;
         }
     }
 }

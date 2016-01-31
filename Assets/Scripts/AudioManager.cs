@@ -16,9 +16,18 @@ public class AudioManager : MonoBehaviour {
     }
 
     public AudioSource generalAudioSource;
+    public AudioSource generalAudioSource2;
+    public AudioSource spider1TinderSource;
+    public AudioSource spider2TinderSource;
     public AudioClip playerReady;
     public AudioClip swhooshSmartPhone;
     public AudioClip poseSelected;
+    public AudioClip photoShoot;
+    public AudioClip tinderScreenIn;
+    public AudioClip tinderLike;
+    public AudioClip tinderNope;
+    public AudioClip tinderSwoosh;
+    public AudioClip finishedGame;
 
     // Use this for initialization
     void Start () {
@@ -43,6 +52,50 @@ public class AudioManager : MonoBehaviour {
     public void PoseSelected()
     {
         generalAudioSource.PlayOneShot(poseSelected);
-
     }
+
+    public void PhotoShoot()
+    {
+        generalAudioSource.PlayOneShot(photoShoot);
+    }
+
+    public void TinderScreenIn()
+    {
+        generalAudioSource.PlayOneShot(tinderScreenIn);
+    }
+
+    public void TinderPlayer1(bool isLike)
+    {
+        if (isLike)
+        {
+            spider1TinderSource.PlayOneShot(tinderLike);
+        }
+        else
+        {
+            spider1TinderSource.PlayOneShot(tinderNope);
+        }
+    }
+
+    public void TinderPlayer2(bool isLike)
+    {
+        if (isLike)
+        {
+            spider2TinderSource.PlayOneShot(tinderLike);
+        }
+        else
+        {
+            spider2TinderSource.PlayOneShot(tinderNope);
+        }
+    }
+
+    public void TinderSwoosh()
+    {
+        generalAudioSource2.PlayOneShot(tinderSwoosh);
+    }
+
+    public void FinishedGame()
+    {
+        generalAudioSource.PlayOneShot(finishedGame);
+    }
+
 }

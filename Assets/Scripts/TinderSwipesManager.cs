@@ -31,6 +31,7 @@ public class TinderSwipesManager : MonoBehaviour
 
     public IEnumerator TimeToPickUpChicks(int likesSpider1, int likesSpider2)
     {
+        AudioManager.Self.TinderScreenIn();
         yield return StartCoroutine(GameElements.Self.tinderScoring.InteruptAndFadeIn());
 
         GenerateRandomIntList(likesSpider1, likesSpider2);
@@ -40,11 +41,15 @@ public class TinderSwipesManager : MonoBehaviour
             if (m_spider1Likes[m_spider1Likes.Count - 1] == 1)
             {
                 likeSpider1.enabled = true;
+                AudioManager.Self.TinderPlayer1(true);
+                AudioManager.Self.TinderSwoosh();
                 TinderSpider1[i].Play("TinderSwipeRight");
             }
             else
             {
                 nopeSpider1.enabled = true;
+                AudioManager.Self.TinderPlayer1(false);
+                AudioManager.Self.TinderSwoosh();
                 TinderSpider1[i].Play("TinderSwipeLeft");
             }
             m_spider1Likes.RemoveAt(m_spider1Likes.Count - 1);
@@ -52,11 +57,15 @@ public class TinderSwipesManager : MonoBehaviour
             if (m_spider2Likes[m_spider2Likes.Count - 1] == 1)
             {
                 likeSpider2.enabled = true;
+                AudioManager.Self.TinderPlayer2(true);
+                AudioManager.Self.TinderSwoosh();
                 TinderSpider2[i].Play("TinderSwipeRight");
             }
             else
             {
                 nopeSpider2.enabled = true;
+                AudioManager.Self.TinderPlayer2(true);
+                AudioManager.Self.TinderSwoosh();
                 TinderSpider2[i].Play("TinderSwipeLeft");
             }
             m_spider2Likes.RemoveAt(m_spider2Likes.Count - 1);

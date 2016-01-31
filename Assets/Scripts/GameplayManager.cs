@@ -105,6 +105,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         // FLASH PHOTOGRAPH!
+        AudioManager.Self.PhotoShoot();
         yield return StartCoroutine(GameElements.Self.flash.FadeIn());
 
         // Spiders in pose for the photo!
@@ -116,11 +117,11 @@ public class GameplayManager : MonoBehaviour
         // Screenshot By Tato
         if (m_likesSpider1 >= m_likesSpider2)
         {
-            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
+            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(0));
         }
         else
         {
-            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
+            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(0));
         }
 
         yield return new WaitForSeconds(1);
@@ -137,6 +138,9 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator EndPhase()
     {
+        yield return new WaitForSeconds(2);
+        AudioManager.Self.FinishedGame();
+
         if (m_totalLikesSpider1 >= m_totalLikesSpider2)
         {
             yield return StartCoroutine(GameElements.Self.GUIManager.WinningScreenTime(true));

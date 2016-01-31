@@ -118,11 +118,11 @@ public class GameplayManager : MonoBehaviour
         // Screenshot By Tato
         if (m_likesSpider1 >= m_likesSpider2)
         {
-            //StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
+            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
         }
         else
         {
-            //StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
+            StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
         }
 
         yield return new WaitForSeconds(1);

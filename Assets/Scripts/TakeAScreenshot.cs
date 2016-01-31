@@ -40,7 +40,7 @@ public class TakeAScreenshot : MonoBehaviour
         // wait for the post completition
         while (!www2.isDone)
         {
-            Debug.Log("I'm waiting... " + www2.uploadProgress);
+            //Debug.Log("I'm waiting... " + www2.uploadProgress);
             yield return new WaitForEndOfFrame();
         } // while
         // print the server answer on the debug log

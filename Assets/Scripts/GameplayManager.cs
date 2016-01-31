@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -44,8 +45,12 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
-        //TutorialOverlays: Wait for user input
-        yield return StartCoroutine(WaitBothPlayersReady());
+		GameElements.Self.flash.GetComponentInChildren<Image>().color = Color.black;
+	    yield return (StartCoroutine(GameElements.Self.flash.FadeOut()));
+		GameElements.Self.flash.GetComponentInChildren<Image>().color = Color.white;
+
+		//TutorialOverlays: Wait for user input
+		yield return StartCoroutine(WaitBothPlayersReady());
 
         //SelectingThePose
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(0));
@@ -145,7 +150,14 @@ public class GameplayManager : MonoBehaviour
 
         yield return null;
 
-        SceneManager.LoadScene(13);
+		//haxx
+
+	    var img = GameElements.Self.flash.GetComponentInChildren<Image>();
+	    img.color = Color.black;
+
+	    yield return (GameElements.Self.flash.FadeIn());
+
+        SceneManager.LoadScene(SRScenes.mainmenu);
     }
 
     

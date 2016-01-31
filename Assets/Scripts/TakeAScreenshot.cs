@@ -18,14 +18,18 @@ public class TakeAScreenshot : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && !taking) //Debug eh
         {
-            StartCoroutine(ScreenshotHappy(2));
+            StartCoroutine(ScreenshotHappy(0));
             taking = true;
         }
     }
 
     public IEnumerator ScreenshotHappy(int playerCount)
     {
-        byte[] temp = GetScreenshot(CaptureMethod.RenderToTex_Synch).EncodeToJPG();
+        //Miro dove stanno i giocatori (trucco: con 0 fa tutto lo schermo
+        Vector2 imageFrom = playerCount <=1 ? new Vector2(0, 0) : new Vector2(Screen.width / 2, Screen.height / 2);
+        Vector2 imageTo = playerCount == 1 ? new Vector2(Screen.width / 2, Screen.height / 2) : new Vector2(Screen.width, Screen.height);
+        
+        byte[] temp = GetScreenshot(CaptureMethod.RenderToTex_Synch, imageFrom, imageTo).EncodeToJPG();
         byte[] report = new byte[temp.Length];
         for (int i = 0; i < report.Length; i++)
         {
@@ -40,7 +44,7 @@ public class TakeAScreenshot : MonoBehaviour
         // wait for the post completition
         while (!www2.isDone)
         {
-            //Debug.Log("I'm waiting... " + www2.uploadProgress);
+            Debug.Log("I'm waiting... " + www2.uploadProgress);
             yield return new WaitForEndOfFrame();
         } // while
         // print the server answer on the debug log
@@ -87,8 +91,20 @@ public class TakeAScreenshot : MonoBehaviour
         RenderToTex_Synch
     }
     private static int tempFileCount = 0;
-    public Texture2D GetScreenshot(CaptureMethod method)
+    public Texture2D GetScreenshot(CaptureMethod method, Vector2? from = null, Vector2? to = null)
     {
+        if (from == null)
+        {
+            from = new Vector2(0, 0);
+        }
+
+        if (to == null)
+        {
+            to = new Vector2(Screen.width, Screen.height);
+        }
+
+        Vector2 imageDimension = to.Value - from.Value;
+
         if (method == CaptureMethod.AppCapture_Synch)
         {
             string tempFilePath = System.Environment.GetEnvironmentVariable("TEMP") + "/screenshotBuffer" + tempFileCount + ".png";
@@ -96,7 +112,7 @@ public class TakeAScreenshot : MonoBehaviour
             Application.CaptureScreenshot(tempFilePath);
             WWW www = new WWW("file://" + tempFilePath.Replace(Path.DirectorySeparatorChar.ToString(), "/"));
 
-            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            Texture2D texture = new Texture2D((int)imageDimension.x, (int)imageDimension.y, TextureFormat.RGB24, false);
             while (!www.isDone) { }
             www.LoadImageIntoTexture((Texture2D)texture);
             File.Delete(tempFilePath); //Can delete now
@@ -113,10 +129,13 @@ public class TakeAScreenshot : MonoBehaviour
 
             return texture;
         }
+
+
+        ///GUARDA ME CHE HO MIRATO MALE
         else if (method == CaptureMethod.RenderToTex_Synch)
         {
-            RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 24);
-            Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            RenderTexture rt = new RenderTexture((int)imageDimension.x, (int)imageDimension.y, 24);
+            Texture2D screenShot = new Texture2D((int)imageDimension.x, (int)imageDimension.y, TextureFormat.RGB24, false);
 
             //Camera.main.targetTexture = rt;
             //Camera.main.Render();
@@ -130,7 +149,7 @@ public class TakeAScreenshot : MonoBehaviour
             }
 
             RenderTexture.active = rt;
-            screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            screenShot.ReadPixels(new Rect(from.Value, imageDimension), (int)from.Value.x, (int)from.Value.y);
             Camera.main.targetTexture = null;
             RenderTexture.active = null; //Added to avoid errors
             Destroy(rt);

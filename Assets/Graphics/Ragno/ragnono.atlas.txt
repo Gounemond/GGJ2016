@@ -1,0 +1,160 @@
+
+ragnono.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+clava-dx
+  rotate: false
+  xy: 877, 1118
+  size: 120, 133
+  orig: 122, 135
+  offset: 1, 1
+  index: -1
+clava-dx-linee
+  rotate: false
+  xy: 626, 1107
+  size: 128, 141
+  orig: 130, 143
+  offset: 1, 1
+  index: -1
+clava-sx
+  rotate: false
+  xy: 1456, 1606
+  size: 120, 133
+  orig: 122, 135
+  offset: 1, 1
+  index: -1
+clava-sx-linee
+  rotate: true
+  xy: 951, 1481
+  size: 128, 141
+  orig: 130, 143
+  offset: 1, 1
+  index: -1
+coda-blu
+  rotate: false
+  xy: 2, 629
+  size: 469, 415
+  orig: 471, 417
+  offset: 1, 1
+  index: -1
+coda-blu-linee
+  rotate: false
+  xy: 642, 1611
+  size: 490, 433
+  orig: 492, 435
+  offset: 1, 1
+  index: -1
+coda-giallo
+  rotate: false
+  xy: 2, 1046
+  size: 622, 488
+  orig: 624, 490
+  offset: 1, 1
+  index: -1
+coda-giallo-linee
+  rotate: false
+  xy: 2, 1536
+  size: 638, 508
+  orig: 640, 510
+  offset: 1, 1
+  index: -1
+coda-rosso
+  rotate: false
+  xy: 1134, 1741
+  size: 406, 303
+  orig: 408, 305
+  offset: 1, 1
+  index: -1
+coscia
+  rotate: true
+  xy: 473, 712
+  size: 332, 155
+  orig: 334, 157
+  offset: 1, 1
+  index: -1
+coscia-linee
+  rotate: true
+  xy: 1886, 1728
+  size: 316, 141
+  orig: 318, 143
+  offset: 1, 1
+  index: -1
+eyes
+  rotate: true
+  xy: 363, 312
+  size: 315, 201
+  orig: 317, 203
+  offset: 1, 1
+  index: -1
+eyes-linee
+  rotate: false
+  xy: 2, 105
+  size: 323, 219
+  orig: 325, 221
+  offset: 1, 1
+  index: -1
+testa
+  rotate: false
+  xy: 1542, 1761
+  size: 342, 283
+  orig: 344, 285
+  offset: 1, 1
+  index: -1
+testa-linee
+  rotate: false
+  xy: 2, 326
+  size: 359, 301
+  orig: 361, 303
+  offset: 1, 1
+  index: -1
+zampa-alta-coscia
+  rotate: true
+  xy: 862, 1253
+  size: 220, 205
+  orig: 222, 207
+  offset: 1, 1
+  index: -1
+zampa-alta-coscia-linee
+  rotate: false
+  xy: 626, 1250
+  size: 234, 223
+  orig: 236, 225
+  offset: 1, 1
+  index: -1
+zampa-alta-mezzo
+  rotate: true
+  xy: 327, 90
+  size: 220, 262
+  orig: 222, 264
+  offset: 1, 1
+  index: -1
+zampa-alta-piede
+  rotate: true
+  xy: 2, 2
+  size: 101, 122
+  orig: 103, 124
+  offset: 1, 1
+  index: -1
+zampa-alta-piede-linee
+  rotate: false
+  xy: 756, 1109
+  size: 119, 139
+  orig: 121, 141
+  offset: 1, 1
+  index: -1
+zampa-colore
+  rotate: true
+  xy: 642, 1475
+  size: 134, 307
+  orig: 136, 309
+  offset: 1, 1
+  index: -1
+zampa-linee
+  rotate: true
+  xy: 1134, 1592
+  size: 147, 320
+  orig: 149, 322
+  offset: 1, 1
+  index: -1

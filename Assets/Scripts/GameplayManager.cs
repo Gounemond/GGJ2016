@@ -22,6 +22,11 @@ public class GameplayManager : MonoBehaviour
     private bool player1Ready = false;
     private bool player2Ready = false;
 
+    private int m_likesSpider1;
+    private int m_likesSpider2;
+    private int m_totalLikesSpider1;
+    private int m_totalLikesSpider2;
+
     // Waiting bool
     private bool m_WaitClick = false;
 
@@ -43,7 +48,7 @@ public class GameplayManager : MonoBehaviour
         yield return StartCoroutine(WaitBothPlayersReady());
 
         //SelectingThePose
-        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(3));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(0));
 
         yield return null;
     }

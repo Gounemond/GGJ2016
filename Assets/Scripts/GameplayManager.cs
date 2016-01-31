@@ -59,21 +59,24 @@ public class GameplayManager : MonoBehaviour
         m_playing = true;
 
         // Go through the rounds of the game
-        yield return StartCoroutine(PlayRound(1));
+        yield return StartCoroutine(PlayRound(0));
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(1));
-        yield return StartCoroutine(PlayRound(2));
-        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
-        yield return StartCoroutine(PlayRound(3));
+        yield return StartCoroutine(PlayRound(1));
+        //yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
+        //yield return StartCoroutine(PlayRound(3));
     }
 
-	private IEnumerator PlayRound(int phaseNumber)
+	private IEnumerator PlayRound(int poseNumber)
 	{
         // Reset the points
         m_likesSpider1 = 0;
         m_likesSpider2 = 0;
+        GameElements.Self.spiderOneTriggerPoses[poseNumber].SetActive(true);
+        GameElements.Self.spiderTwoTriggerPoses[poseNumber].SetActive(true);
+
 
         // Do the countdown while playing
-		var cd = GameElements.Self.countdownCanvas.GetComponentInChildren<CountdownAnimation>();
+        var cd = GameElements.Self.countdownCanvas.GetComponentInChildren<CountdownAnimation>();
 	    for (int i = 6; i > 0; i--)
 	    {
 			cd.CountdownUpdate(i);
@@ -83,6 +86,8 @@ public class GameplayManager : MonoBehaviour
 		cd.CountdownStop();
 
         // Smile! Photo time!
+        GameElements.Self.spiderOneTriggerPoses[poseNumber].SetActive(false);
+        GameElements.Self.spiderTwoTriggerPoses[poseNumber].SetActive(false);
         yield return StartCoroutine(TakeThePhoto());
     }
 
@@ -106,12 +111,14 @@ public class GameplayManager : MonoBehaviour
         // Screenshot By Tato
         if (m_likesSpider1 >= m_likesSpider2)
         {
-            yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
+            //yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
         }
         else
         {
-            yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
+            //yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
         }
+
+        yield return new WaitForSeconds(1);
 
         // Play the tinder swiping games 
         yield return StartCoroutine(GameElements.Self.tinderSwipeManager.TimeToPickUpChicks(m_likesSpider1, m_likesSpider2));
@@ -123,8 +130,17 @@ public class GameplayManager : MonoBehaviour
         FindObjectOfType<RagnoManager>().UnfreezeSpiders();
     }
 
-    private IEnumerator EndPhase()
+    public IEnumerator EndPhase()
     {
+        if (m_totalLikesSpider1 >= m_totalLikesSpider2)
+        {
+            yield return StartCoroutine(GameElements.Self.GUIManager.WinningScreenTime(true));
+        }
+        else
+        {
+            yield return StartCoroutine(GameElements.Self.GUIManager.WinningScreenTime(false));
+        }
+
         yield return null;
 
         SceneManager.LoadScene(13);
@@ -177,14 +193,29 @@ public class GameplayManager : MonoBehaviour
         player2Ready = true;
     }
 
-    public void EnteredInThePose()
+    public void EnteredInThePose(int player)
     {
-        m_likesSpider1++;
+        if (player ==1)
+        {
+            m_likesSpider1++;
+        }
+        else
+        {
+            m_likesSpider2++;
+        }
+        Debug.Log(m_likesSpider1);
     }
 
-    public void ExitedFromThePose()
+    public void ExitedFromThePose(int player)
     {
-        m_likesSpider1--;
+        if (player == 1)
+        {
+            m_likesSpider1--;
+        }
+        else
+        {
+            m_likesSpider2--;
+        }
     }
 
 }

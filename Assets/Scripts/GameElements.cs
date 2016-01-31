@@ -48,10 +48,13 @@ public class GameElements : MonoBehaviour
     public UIFader flash;
     public UIFader tinderScoring;
 	public GameObject countdownCanvas;
+    public UIFader finalEndScreen;
 
     [Header("Core Mechanic Objects")]
     public DetectInputToStart inputToStartGame;
     public RagnoManager ragnoManager;
+    public GameObject[] spiderOneTriggerPoses;
+    public GameObject[] spiderTwoTriggerPoses;
     public TinderSwipesManager tinderSwipeManager;
     public TakeAScreenshot screenshotCamera;
 

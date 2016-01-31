@@ -7,6 +7,8 @@ public class SpiderTrigger : MonoBehaviour {
     public event Action onCollisionEnter;              // Called when a Tangram Object enters the collider
     public event Action onCollisionExit;               // Called when a Tangram Object enters the collider
 
+    public int spiderNumber = 1;
+
     private int objectsInCollider = 0;
 
     // Use this for initialization
@@ -19,12 +21,14 @@ public class SpiderTrigger : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("SPIDER!");
         if (other.tag == "Spider")
         {
             if (objectsInCollider == 0)
             {
+                GameplayManager.Self.EnteredInThePose(spiderNumber);
                 if (onCollisionEnter != null)
                 {
                     onCollisionEnter();
@@ -34,12 +38,13 @@ public class SpiderTrigger : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Spider")
         {
             if (objectsInCollider == 1)
             {
+                GameplayManager.Self.ExitedFromThePose(spiderNumber);
                 if (onCollisionExit != null)
                 {
                     onCollisionExit();

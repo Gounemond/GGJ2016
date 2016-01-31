@@ -24,6 +24,9 @@ public class GUIManager : MonoBehaviour
     public Image[] poseToBlink;
     public Image[] poseSuggestorSpider1;
 
+    public Image spiderWinning;
+    public Image spiderLosing;
+
     public IEnumerator SelectTheSexyPose(int poseSelected = 3)
     {
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
@@ -62,5 +65,19 @@ public class GUIManager : MonoBehaviour
 
 		yield return poseSuggestorSpider1[poseSelected].DOColor(Color.white,1).WaitForCompletion();
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeOut());         
+    }
+
+    public IEnumerator WinningScreenTime(bool hasPlayer1Won)
+    {
+        yield return StartCoroutine(GameElements.Self.finalEndScreen.InteruptAndFadeIn());
+
+        if (!hasPlayer1Won)
+        {
+            spiderWinning.transform.localPosition = new Vector3(spiderWinning.transform.localPosition.x, 400, spiderWinning.transform.localPosition.z);
+            spiderLosing.transform.localPosition = new Vector3(spiderLosing.transform.localPosition.x, -400, spiderLosing.transform.localPosition.z);
+        }
+        spiderWinning.transform.DOLocalMoveY(0, 2);
+        yield return spiderLosing.transform.DOLocalMoveY(0, 2).WaitForCompletion();
+
     }
 }

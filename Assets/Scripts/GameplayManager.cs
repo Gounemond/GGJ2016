@@ -45,9 +45,6 @@ public class GameplayManager : MonoBehaviour
 
     private IEnumerator StartPhase()
     {
-		GameElements.Self.flash.GetComponentInChildren<Image>().color = Color.black;
-	    yield return (StartCoroutine(GameElements.Self.flash.FadeOut()));
-		GameElements.Self.flash.GetComponentInChildren<Image>().color = Color.white;
 
 		//TutorialOverlays: Wait for user input
 		yield return StartCoroutine(WaitBothPlayersReady());

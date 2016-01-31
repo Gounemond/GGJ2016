@@ -7,6 +7,12 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 	public Image fadeImage;
+
+	void Start()
+	{
+		fadeImage.DOFade(0, 0.6f);
+	}
+
 	void Update()
 	{
 		foreach (var p in Rewired.ReInput.players.AllPlayers)

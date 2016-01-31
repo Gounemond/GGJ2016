@@ -11,26 +11,25 @@ public class ArmControlTest : MonoBehaviour
 	public Vector2 ArmStartingPoint;
 	public Vector2 BaseDirection = new Vector2(-1,-1);
 	public float AllowedMaxAngleFromBaseDirection;
-	public List<HingeJoint2D> Arms;
 	public Side side;
 	private SpringJoint2D joint;
-
+	public float SpringFrequency;
+	public float SpringDampingRatio;
+	public Vector2 AnchorOffset;
 	void Start()
 	{
 		joint = LeftHandBody.gameObject.AddComponent<SpringJoint2D>();
 		joint.connectedBody = GetComponent<Rigidbody2D>();
 		joint.autoConfigureDistance = false;
 		joint.distance = 0;
-		joint.dampingRatio = 1;
-		joint.frequency = 4;
+		joint.dampingRatio = SpringDampingRatio;
+		joint.frequency = SpringFrequency;
+		joint.anchor = AnchorOffset;
 		/*foreach (var c in Rewired.ReInput.controllers.Joysticks)
 		{
 			Rewired.ReInput.players.GetPlayer(0).controllers.AddController(c, false);
 			Debug.Log("Added controller "+c.name);
 		}*/
-		Arms.Add(transform.parent.FindChild("Arm_L1").GetComponent<HingeJoint2D>());
-		Arms.Add(transform.parent.FindChild("Arm_L2").GetComponent<HingeJoint2D>());
-		Arms.Add(transform.parent.FindChild("Arm_L3").GetComponent<HingeJoint2D>());
 	}
 
 	float mod(float b, float m)
@@ -58,15 +57,19 @@ public class ArmControlTest : MonoBehaviour
 		var angle = Mathf.Atan2(leftArmControl.x, leftArmControl.y) * Mathf.Rad2Deg;
 		var angleBase = Mathf.Atan2(BaseDirection.x, BaseDirection.y) * Mathf.Rad2Deg;
 		var angleDiff = mod(angle - angleBase, 360) - 180;
-		//Debug.Log(" base " + angleBase + " diff "+ angleDiff);
+
 		if (Vector2.Angle(BaseDirection, leftArmControl) > AllowedMaxAngleFromBaseDirection)
 		{
 			leftArmControl = rotate(BaseDirection.normalized*leftArmControl.magnitude,
 				AllowedMaxAngleFromBaseDirection*Mathf.Sign(angleDiff));
 		}
 
-		joint.enabled = leftArmControl.magnitude > 0.2f;
+        joint.enabled = leftArmControl.magnitude > 0.2f;
         joint.connectedAnchor = ArmStartingPoint + leftArmControl * DefaultDistance;
-		if (joint.enabled) Debug.DrawLine(transform.position, transform.TransformPoint(joint.connectedAnchor));
+		if (joint.enabled)
+		{
+			Debug.DrawLine(transform.TransformPoint(ArmStartingPoint), transform.TransformPoint(joint.connectedAnchor));
+			Debug.DrawLine(LeftHandBody.transform.TransformPoint(AnchorOffset), transform.TransformPoint(joint.connectedAnchor));
+		}
 	}
 }

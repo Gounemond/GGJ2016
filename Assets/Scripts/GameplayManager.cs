@@ -205,7 +205,6 @@ public class GameplayManager : MonoBehaviour
         {
             m_likesSpider2++;
         }
-        Debug.Log(m_likesSpider1);
     }
 
     public void ExitedFromThePose(int player)

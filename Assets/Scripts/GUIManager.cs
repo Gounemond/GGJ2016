@@ -31,7 +31,7 @@ public class GUIManager : MonoBehaviour
     {
         yield return StartCoroutine(GameElements.Self.introGUI.InteruptAndFadeIn());
 
-		yield return smartphoneInitial.transform.DOLocalMoveY(160, 1.5f).WaitForCompletion();
+		yield return smartphoneInitial.transform.DOLocalMoveY(200, 1.5f).WaitForCompletion();
 
         yield return new WaitForSeconds(1f);
 		switch (poseSelected)

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 	public Image fadeImage;
+    public AudioSource clickToPlay;
 	private AudioSource source;
 
 	void Start()
@@ -21,7 +22,8 @@ public class MainMenu : MonoBehaviour
 		{
 			if (p.GetButtonDown("Start Game") || (p.GetButton("Left Jump") && p.GetButton("Right Jump")))
 			{
-				source.DOFade(0, 1);
+                clickToPlay.Play();
+                source.DOFade(0, 1);
                 fadeImage.DOFade(1, 1).OnComplete(() =>
 				{
 					SceneManager.LoadScene(SRScenes.SpiderPhotoSession);

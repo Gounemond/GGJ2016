@@ -36,7 +36,6 @@ public class SpiderTrigger : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-
         if (objectsInCollider == 1)
         {
             GameplayManager.Self.ExitedFromThePose(spiderNumber);

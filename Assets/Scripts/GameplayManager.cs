@@ -62,8 +62,10 @@ public class GameplayManager : MonoBehaviour
         yield return StartCoroutine(PlayRound(0));
         yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(1));
         yield return StartCoroutine(PlayRound(1));
-        //yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
-        //yield return StartCoroutine(PlayRound(3));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(2));
+        yield return StartCoroutine(PlayRound(2));
+        yield return StartCoroutine(GameElements.Self.GUIManager.SelectTheSexyPose(3));
+        yield return StartCoroutine(PlayRound(3));
     }
 
 	private IEnumerator PlayRound(int poseNumber)
@@ -111,11 +113,11 @@ public class GameplayManager : MonoBehaviour
         // Screenshot By Tato
         if (m_likesSpider1 >= m_likesSpider2)
         {
-            //yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
+            //StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(1));
         }
         else
         {
-            //yield return StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
+            //StartCoroutine(GameElements.Self.screenshotCamera.ScreenshotHappy(2));
         }
 
         yield return new WaitForSeconds(1);

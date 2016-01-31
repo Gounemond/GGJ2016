@@ -27,15 +27,22 @@ public sealed class SRScenes {
         }
     }
     
-    public static global::TypeSafe.Scene SpiderPhotoSession {
+    public static global::TypeSafe.Scene movieScene {
         get {
             return __all[1];
         }
     }
     
+    public static global::TypeSafe.Scene SpiderPhotoSession {
+        get {
+            return __all[2];
+        }
+    }
+    
     private static global::System.Collections.Generic.IList<global::TypeSafe.Scene> __all = new global::System.Collections.ObjectModel.ReadOnlyCollection<global::TypeSafe.Scene>(new global::TypeSafe.Scene[] {
                 new global::TypeSafe.Scene("mainmenu", 0),
-                new global::TypeSafe.Scene("SpiderPhotoSession", 1)});
+                new global::TypeSafe.Scene("movieScene", 1),
+                new global::TypeSafe.Scene("SpiderPhotoSession", 2)});
     
     public static global::System.Collections.Generic.IList<global::TypeSafe.Scene> All {
         get {

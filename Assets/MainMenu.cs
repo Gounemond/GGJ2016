@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 	public Image fadeImage;
     public AudioSource clickToPlay;
 	private AudioSource source;
-
+	public bool goToMovieScene;
 	void Start()
 	{
 		source = GetComponent<AudioSource>();
@@ -25,9 +25,10 @@ public class MainMenu : MonoBehaviour
                 clickToPlay.Play();
                 source.DOFade(0, 1);
                 fadeImage.DOFade(1, 1).OnComplete(() =>
-				{
-					SceneManager.LoadScene(SRScenes.SpiderPhotoSession);
-				}); 
+                {
+	                if (goToMovieScene) SceneManager.LoadScene(SRScenes.movieScene);
+	                else SceneManager.LoadScene(SRScenes.SpiderPhotoSession);
+                }); 
 			}
 
 			if (p.GetButtonDown("End Game"))

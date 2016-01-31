@@ -6,7 +6,7 @@ public class SpiderMain : MonoBehaviour
 	public int playerID;
 	public Rewired.Player RwPlayer { get { return Rewired.ReInput.players.GetPlayer(playerID); } }
 	public bool IsInputEnabled = true;
-
+	public AudioClip stepsSound;
 	public void Update()
 	{
 		foreach (var c in GetComponentsInChildren<LeftJumper>())

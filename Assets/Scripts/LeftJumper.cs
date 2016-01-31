@@ -17,16 +17,36 @@ public class LeftJumper : MonoBehaviour
 	private Rigidbody2D rig;
 	private bool jumpStarted;
 	private CircleCollider2D circ;
+	private bool grounded;
+	public float stepsVolume = 0.5f;
 	void Start()
 	{
 		rig = GetComponent<Rigidbody2D>();
 		circ = GetComponent<CircleCollider2D>();
 	}
 
+	IEnumerator DestroyInSeconds(AudioSource target, float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		Destroy(target);
+	}
+
 	void FixedUpdate ()
 	{
 		var rayLength = circ.radius * transform.lossyScale.y + 0.1f;
-		if (jumpStarted || Physics2D.Raycast(transform.position, Vector2.down, rayLength, 1 << 8).collider != null)
+
+		var newGrounded = Physics2D.Raycast(transform.position, Vector2.down, rayLength, 1 << 8).collider != null;
+		if (newGrounded && !grounded)
+		{
+			var source = gameObject.AddComponent<AudioSource>();
+			source.clip = SpiderRef.stepsSound;
+			source.Play();
+			source.volume = stepsVolume;
+            StartCoroutine(DestroyInSeconds(source, source.clip.length));
+		}
+		grounded = newGrounded;
+
+		if (jumpStarted || grounded)
 		{
 			var player = SpiderRef.RwPlayer;
 			if (player.GetAxis(Side + " Jump") > 0.2f)
